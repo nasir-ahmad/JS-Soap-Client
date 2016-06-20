@@ -133,7 +133,8 @@ SOAPClient._loadWsdl = function(url, method, parameters, async, callback)
 		return SOAPClient._sendSoapRequest(url, method, parameters, async, callback, wsdl);
 	// get wsdl
 	var xmlHttp = SOAPClient._getXmlHttp();
-	xmlHttp.open("GET", url + "?wsdl", async);
+	var urlWsdl = (url.indexOf('?') > -1) ? url + '&wsdl' : url + '?wsdl';
+	xmlHttp.open("GET", urlWsdl, async);
 	if(async) 
 	{
 		xmlHttp.onreadystatechange = function() 
