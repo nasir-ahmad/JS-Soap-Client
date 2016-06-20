@@ -199,6 +199,8 @@ SOAPClient._onSendSoapRequest = function(method, async, callback, wsdl, req)
 	var nd = SOAPClient._getElementsByTagName(req.responseXML, method + "Result");
 	if(nd.length == 0)
 		nd = SOAPClient._getElementsByTagName(req.responseXML, "return");	// PHP web Service?
+	if (nd.length == 0)
+		nd = SOAPClient._getElementsByTagName(req.responseXML, method + "Return");	// PHP web Service?		
 	if(nd.length == 0)
 	{
 		if(req.responseXML.getElementsByTagName("faultcode").length > 0)
